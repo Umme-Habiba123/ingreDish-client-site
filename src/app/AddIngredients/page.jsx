@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -21,13 +21,16 @@ import {
   Wheat
 } from 'lucide-react';
 
+import { findRecipes } from "@/utils/findRecipes"; // 🔥 Recipe finder
+import { commonIngredients } from "@/data/common"; // 🔥 Ignore common items
+
 export default function AddIngredients() {
   const router = useRouter();
   const [ingredients, setIngredients] = useState([]);
+  const [selected, setSelected] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
-  // Common ingredients by category
   const categories = [
     {
       name: 'Vegetables',
@@ -66,30 +69,40 @@ export default function AddIngredients() {
     }
   ];
 
+  // Add ingredient
   const addIngredient = (ingredient) => {
     if (ingredient && !ingredients.includes(ingredient)) {
       setIngredients([...ingredients, ingredient]);
+
+      // Only add to selected if not common
+      if (!commonIngredients.includes(ingredient) && !selected.includes(ingredient)) {
+        setSelected([...selected, ingredient]);
+      }
+
       setCurrentInput('');
       setSuggestions([]);
     }
   };
 
+  // Remove ingredient
   const removeIngredient = (index) => {
+    const removed = ingredients[index];
     setIngredients(ingredients.filter((_, i) => i !== index));
-  };
-
-  const handleSubmit = () => {
-    if (ingredients.length > 0) {
-      // Save to localStorage or state management
-      localStorage.setItem('currentIngredients', JSON.stringify(ingredients));
-      
-      // Redirect to results page
-      router.push('/check/results');
+    if (selected.includes(removed)) {
+      setSelected(selected.filter(i => i !== removed));
     }
   };
 
+  // Quick add from category
   const handleQuickAdd = (item) => {
     addIngredient(item);
+  };
+
+  // Find Recipe button
+  const handleFindRecipe = () => {
+    const matched = findRecipes(selected); // selected ingredient দিয়ে match
+    localStorage.setItem("recipes", JSON.stringify(matched));
+    router.push("/recipes"); // redirect to recipes page
   };
 
   return (
@@ -121,26 +134,19 @@ export default function AddIngredients() {
           <div className="lg:col-span-2 space-y-6">
             {/* Quick Input Methods */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <Link href="/ingredients/add/manual" 
-                className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/ingredients/add/manual" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <FileText className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Manual</span>
               </Link>
-              
-              <Link href="/ingredients/add/voice"
-                className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/ingredients/add/voice" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <Mic className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Voice</span>
               </Link>
-              
-              <Link href="/ingredients/add/scan"
-                className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/ingredients/add/scan" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <Barcode className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Scan</span>
               </Link>
-              
-              <Link href="/ingredients/add/bulk"
-                className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/ingredients/add/bulk" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <Package className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Bulk</span>
               </Link>
@@ -159,11 +165,8 @@ export default function AddIngredients() {
                   value={currentInput}
                   onChange={(e) => {
                     setCurrentInput(e.target.value);
-                    // Simple suggestion logic
                     const allItems = categories.flatMap(c => c.items);
-                    const filtered = allItems.filter(item => 
-                      item.toLowerCase().includes(e.target.value.toLowerCase())
-                    ).slice(0, 5);
+                    const filtered = allItems.filter(item => item.toLowerCase().includes(e.target.value.toLowerCase())).slice(0,5);
                     setSuggestions(filtered);
                   }}
                   onKeyPress={(e) => e.key === 'Enter' && addIngredient(currentInput)}
@@ -171,15 +174,10 @@ export default function AddIngredients() {
                   className="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
                 />
                 
-                {/* Suggestions */}
                 {suggestions.length > 0 && (
                   <div className="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-xl">
                     {suggestions.map((suggestion, index) => (
-                      <div
-                        key={index}
-                        onClick={() => addIngredient(suggestion)}
-                        className="px-4 py-2 hover:bg-yellow-500/20 cursor-pointer text-gray-300"
-                      >
+                      <div key={index} onClick={() => addIngredient(suggestion)} className="px-4 py-2 hover:bg-yellow-500/20 cursor-pointer text-gray-300">
                         {suggestion}
                       </div>
                     ))}
@@ -187,23 +185,14 @@ export default function AddIngredients() {
                 )}
               </div>
 
-              {/* Selected Ingredients */}
               {ingredients.length > 0 && (
                 <div className="mt-4">
                   <h3 className="text-sm text-gray-400 mb-2">Selected Ingredients:</h3>
                   <div className="flex flex-wrap gap-2">
                     {ingredients.map((ing, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center gap-2 px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm group"
-                      >
+                      <span key={index} className="inline-flex items-center gap-2 px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm group">
                         {ing}
-                        <button
-                          onClick={() => removeIngredient(index)}
-                          className="text-gray-500 hover:text-red-500"
-                        >
-                          ✕
-                        </button>
+                        <button onClick={() => removeIngredient(index)} className="text-gray-500 hover:text-red-500">✕</button>
                       </span>
                     ))}
                   </div>
@@ -211,24 +200,16 @@ export default function AddIngredients() {
               )}
             </div>
 
-            {/* Category-wise Quick Add */}
+            {/* Category Quick Add */}
             <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-6">
               <h2 className="text-xl font-semibold mb-4">Quick Add by Category</h2>
-              
               <div className="space-y-4">
                 {categories.map((category, idx) => (
                   <div key={idx}>
-                    <h3 className="text-sm font-medium text-yellow-500 mb-2 flex items-center gap-2">
-                      {category.icon}
-                      {category.name}
-                    </h3>
+                    <h3 className="text-sm font-medium text-yellow-500 mb-2 flex items-center gap-2">{category.icon} {category.name}</h3>
                     <div className="flex flex-wrap gap-2">
                       {category.items.map((item, itemIdx) => (
-                        <button
-                          key={itemIdx}
-                          onClick={() => handleQuickAdd(item)}
-                          className="px-3 py-1 bg-gray-800 hover:bg-yellow-500/20 text-gray-300 rounded-full text-sm transition-colors"
-                        >
+                        <button key={itemIdx} onClick={() => handleQuickAdd(item)} className="px-3 py-1 bg-gray-800 hover:bg-yellow-500/20 text-gray-300 rounded-full text-sm transition-colors">
                           + {item}
                         </button>
                       ))}
@@ -239,7 +220,7 @@ export default function AddIngredients() {
             </div>
           </div>
 
-          {/* Right Column - Summary & Actions */}
+          {/* Right Column */}
           <div className="lg:col-span-1">
             <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-6 sticky top-24">
               <h2 className="text-xl font-semibold mb-4">Selected Items</h2>
@@ -247,9 +228,7 @@ export default function AddIngredients() {
               {ingredients.length > 0 ? (
                 <>
                   <div className="mb-4">
-                    <div className="text-3xl font-bold text-yellow-500">
-                      {ingredients.length}
-                    </div>
+                    <div className="text-3xl font-bold text-yellow-500">{ingredients.length}</div>
                     <div className="text-sm text-gray-400">ingredients added</div>
                   </div>
 
@@ -257,30 +236,19 @@ export default function AddIngredients() {
                     {ingredients.map((ing, index) => (
                       <div key={index} className="flex justify-between items-center text-sm">
                         <span>{ing}</span>
-                        <button 
-                          onClick={() => removeIngredient(index)}
-                          className="text-gray-600 hover:text-red-500"
-                        >
-                          ✕
-                        </button>
+                        <button onClick={() => removeIngredient(index)} className="text-gray-600 hover:text-red-500">✕</button>
                       </div>
                     ))}
                   </div>
 
-                  <button
-                    onClick={handleSubmit}
-                    className="w-full bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors mb-3"
-                  >
-                    Find Recipes ({ingredients.length})
+                  <button onClick={handleFindRecipe} className="w-full bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors mb-3">
+                    Find Recipe ({selected.length})
                   </button>
 
-                  <button
-                    onClick={() => {
-                      localStorage.setItem('savedIngredients', JSON.stringify(ingredients));
-                      alert('List saved!');
-                    }}
-                    className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 transition-colors"
-                  >
+                  <button onClick={() => {
+                    localStorage.setItem('savedIngredients', JSON.stringify(ingredients));
+                    alert('List saved!');
+                  }} className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 transition-colors">
                     Save This List
                   </button>
                 </>
@@ -288,29 +256,20 @@ export default function AddIngredients() {
                 <div className="text-center py-8">
                   <div className="text-6xl mb-4">🥗</div>
                   <p className="text-gray-500">No ingredients added yet</p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Add ingredients to find recipes
-                  </p>
+                  <p className="text-sm text-gray-600 mt-2">Add ingredients to find recipes</p>
                 </div>
               )}
 
-              {/* Recent Lists */}
               <div className="mt-6 pt-6 border-t border-gray-800">
                 <h3 className="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
                   <History className="w-4 h-4" />
                   Recent Lists
                 </h3>
-                <Link 
-                  href="/ingredients/my/recent-1"
-                  className="block p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg mb-2 transition-colors"
-                >
+                <Link href="/ingredients/my/recent-1" className="block p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg mb-2 transition-colors">
                   <div className="text-sm font-medium">Yesterday's Cooking</div>
                   <div className="text-xs text-gray-500">Potato, Egg, Onion, Chili...</div>
                 </Link>
-                <Link 
-                  href="/ingredients/my/recent-2"
-                  className="block p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors"
-                >
+                <Link href="/ingredients/my/recent-2" className="block p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors">
                   <div className="text-sm font-medium">Weekend Meal Prep</div>
                   <div className="text-xs text-gray-500">Chicken, Potato, Tomato, Spices...</div>
                 </Link>

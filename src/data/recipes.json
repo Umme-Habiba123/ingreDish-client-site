@@ -1,0 +1,151 @@
+[
+  {
+    "id": 1,
+    "name": "Vegetable Curry",
+    "image": "/images/veg-curry.jpg",
+    "ingredients": [
+      "potato",
+      "carrot",
+      "cauliflower",
+      "onion",
+      "turmeric",
+      "cumin",
+      "oil",
+      "salt",
+      "chili"
+    ],
+    "category": "Vegetables",
+    "cookTime": "30 min"
+  },
+  {
+    "id": 2,
+    "name": "Chicken Curry",
+    "image": "/images/chicken-curry.jpg",
+    "ingredients": [
+      "chicken",
+      "onion",
+      "garam masala",
+      "turmeric",
+      "oil",
+      "salt",
+      "chili"
+    ],
+    "category": "Protein",
+    "cookTime": "40 min"
+  },
+  {
+    "id": 3,
+    "name": "Egg Fried Rice",
+    "image": "/images/egg-fried-rice.jpg",
+    "ingredients": [
+      "rice",
+      "egg",
+      "onion",
+      "soy sauce",
+      "oil",
+      "salt"
+    ],
+    "category": "Grains",
+    "cookTime": "20 min"
+  },
+  {
+    "id": 4,
+    "name": "Fish Curry",
+    "image": "/images/fish-curry.jpg",
+    "ingredients": [
+      "fish",
+      "onion",
+      "turmeric",
+      "cumin",
+      "oil",
+      "salt"
+    ],
+    "category": "Protein",
+    "cookTime": "35 min"
+  },
+  {
+    "id": 5,
+    "name": "Paneer Butter Masala",
+    "image": "/images/paneer.jpg",
+    "ingredients": [
+      "paneer",
+      "butter",
+      "onion",
+      "garam masala",
+      "cream",
+      "salt"
+    ],
+    "category": "Dairy",
+    "cookTime": "30 min"
+  },
+  {
+    "id": 6,
+    "name": "Dal",
+    "image": "/images/dal.jpg",
+    "ingredients": [
+      "lentils",
+      "turmeric",
+      "onion",
+      "oil",
+      "salt"
+    ],
+    "category": "Grains",
+    "cookTime": "25 min"
+  },
+  {
+    "id": 7,
+    "name": "Chicken Pasta",
+    "image": "/images/chicken-pasta.jpg",
+    "ingredients": [
+      "pasta",
+      "chicken",
+      "cheese",
+      "butter",
+      "salt"
+    ],
+    "category": "Grains",
+    "cookTime": "30 min"
+  },
+  {
+    "id": 8,
+    "name": "Vegetable Fried Rice",
+    "image": "/images/veg-fried-rice.jpg",
+    "ingredients": [
+      "rice",
+      "carrot",
+      "cabbage",
+      "soy sauce",
+      "oil",
+      "salt"
+    ],
+    "category": "Vegetables",
+    "cookTime": "20 min"
+  },
+  {
+    "id": 9,
+    "name": "Omelette",
+    "image": "/images/omelette.jpg",
+    "ingredients": [
+      "egg",
+      "onion",
+      "oil",
+      "salt"
+    ],
+    "category": "Protein",
+    "cookTime": "10 min"
+  },
+  {
+    "id": 10,
+    "name": "Beef Curry",
+    "image": "/images/beef-curry.jpg",
+    "ingredients": [
+      "beef",
+      "onion",
+      "garam masala",
+      "oil",
+      "salt"
+    ],
+    "category": "Protein",
+    "cookTime": "50 min"
+  }
+]
