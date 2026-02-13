@@ -191,8 +191,8 @@ export default function HeroSectionWithNavbar() {
                 <Link href="/" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
                   Home <ChevronDown className="w-4 h-4" />
                 </Link>
-                <Link href="/pages" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
-                  Pages <ChevronDown className="w-4 h-4" />
+                <Link href="/addIngredients" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
+                 Add Ingredients <ChevronDown className="w-4 h-4" />
                 </Link>
                 <Link href="/reservation" className="text-white hover:text-gray-300 transition-colors body-text font-medium">
                   Reservation
