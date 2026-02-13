@@ -1,3 +1,4 @@
+import CommitmentSection from "@/homePage/CommitmentSection/CommitmentSection";
 import PremiumHeroSection from "@/homePage/PremiumHeroSection/PremiumHeroSection";
 import Footer from "@/shared/Footer/Footer";
 import Navbar from "@/shared/Navbar/Navbar";
@@ -9,7 +10,7 @@ export default function Home() {
       <Navbar></Navbar>
 
 
-
+      <CommitmentSection></CommitmentSection>
       <PremiumHeroSection></PremiumHeroSection>
       <Footer></Footer>
     </div>
