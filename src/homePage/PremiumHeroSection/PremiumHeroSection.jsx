@@ -226,11 +226,11 @@ export default function PremiumHeroSection() {
 
             {/* Premium Badge */}
             <div className={`inline-flex items-center gap-3 premium-badge px-6 py-3 rounded-full mb-8 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
-              <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-neutral-content">
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-gray-600">
                 Premium Goods
               </span>
               <span className="w-px h-4 bg-neutral-content/30"></span>
-              <span className="text-xs sm:text-sm font-light italic text-neutral-content">
+              <span className="text-xs sm:text-sm font-light italic  text-gray-600">
                 Bon Appétit
               </span>
             </div>

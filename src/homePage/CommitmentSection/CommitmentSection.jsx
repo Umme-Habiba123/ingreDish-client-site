@@ -82,17 +82,6 @@ export default function CommitmentSection() {
           }
         }
         
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
         .animate-fade-in-up {
           animation: fadeInUp 0.8s ease-out forwards;
         }
@@ -103,10 +92,6 @@ export default function CommitmentSection() {
         
         .animate-fade-in-right {
           animation: fadeInRight 0.8s ease-out forwards;
-        }
-        
-        .animate-scale-in {
-          animation: scaleIn 0.6s ease-out forwards;
         }
         
         .delay-100 {
@@ -139,34 +124,9 @@ export default function CommitmentSection() {
           opacity: 0;
         }
         
-        /* Year badge */
-        .year-badge {
-          position: absolute;
-          top: -30px;
-          right: 20px;
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #f4e4c1 0%, #e6d5a8 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-          z-index: 10;
-        }
-        
-        @media (max-width: 768px) {
-          .year-badge {
-            width: 80px;
-            height: 80px;
-            font-size: 1.25rem;
-            top: -20px;
-            right: 10px;
-          }
+        .delay-700 {
+          animation-delay: 0.7s;
+          opacity: 0;
         }
         
         /* Image hover effects */
@@ -174,15 +134,20 @@ export default function CommitmentSection() {
           overflow: hidden;
           border-radius: 12px;
           transition: transform 0.4s ease, box-shadow 0.4s ease;
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .image-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+          border-color: rgba(234, 179, 8, 0.3);
         }
         
         .image-card img {
           transition: transform 0.6s ease;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         
         .image-card:hover img {
@@ -202,8 +167,9 @@ export default function CommitmentSection() {
           left: -100%;
           width: 100%;
           height: 100%;
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.1);
           transition: left 0.5s ease;
+          z-index: 1;
         }
         
         .learn-more-btn:hover::before {
@@ -213,62 +179,83 @@ export default function CommitmentSection() {
 
       <section 
         id="discover-story-section"
-        className="relative py-16 lg:py-24 bg-white dark:bg-neutral overflow-hidden"
+        className="relative py-16 lg:py-24 bg-black"
       >
-        {/* Year Badge */}
-        <div className={`year-badge ${isVisible ? 'animate-scale-in delay-100' : 'opacity-0'}`}>
-          2025
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Subtle background pattern with yellow tint */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(234,179,8,0.05),transparent_50%)] pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
             
-            {/* Left Side - Images */}
-            <div className="grid grid-cols-2 gap-4 lg:gap-6">
+            {/* Left Side - Three Images in Creative Layout */}
+            <div className="relative grid grid-cols-2 gap-4 lg:gap-6">
               {/* Top Left Image */}
-              <div className={`image-card ${isVisible ? 'animate-fade-in-left delay-200' : 'opacity-0'}`}>
-                <img 
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3"
-                  alt="Fresh ingredients and vegetables"
-                  className="w-full h-64 sm:h-72 lg:h-80 object-cover"
-                />
+              <div className="col-span-2 sm:col-span-1">
+                <div className={`image-card ${isVisible ? 'animate-fade-in-left delay-200' : 'opacity-0'}`}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3"
+                    alt="Fresh ingredients and vegetables"
+                    className="w-full h-72 sm:h-80 object-cover"
+                  />
+                </div>
               </div>
 
               {/* Top Right Image */}
-              <div className={`image-card mt-8 lg:mt-12 ${isVisible ? 'animate-fade-in-left delay-300' : 'opacity-0'}`}>
-                <img 
-                  src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3"
-                  alt="Gourmet grilled skewers"
-                  className="w-full h-64 sm:h-72 lg:h-80 object-cover"
-                />
+              <div className="col-span-2 sm:col-span-1">
+                <div className={`image-card ${isVisible ? 'animate-fade-in-right delay-300' : 'opacity-0'}`}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3"
+                    alt="Gourmet grilled skewers"
+                    className="w-full h-72 sm:h-80 object-cover"
+                  />
+                </div>
               </div>
+              
+              {/* Decorative yellow element */}
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none"></div>
             </div>
 
             {/* Right Side - Content */}
             <div className="space-y-6 lg:space-y-8">
-              {/* Small Title */}
-              <div className={`${isVisible ? 'animate-fade-in-right delay-400' : 'opacity-0'}`}>
-                <p className="elegant-script text-xl sm:text-2xl text-gray-600 dark:text-gray-400">
-                  Discover Our Story
+              {/* Small Title with Yellow-500 Accent */}
+              <div className={`${isVisible ? 'animate-fade-in-right delay-500' : 'opacity-0'}`}>
+                <p className="elegant-script text-xl sm:text-2xl text-yellow-500">
+                  ✦ Discover Our Story ✦
                 </p>
               </div>
 
-              {/* Main Heading */}
-              <h2 className={`elegant-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black dark:text-white leading-tight ${isVisible ? 'animate-fade-in-right delay-500' : 'opacity-0'}`}>
+              {/* Main Heading - White with Yellow-500 Accent Word */}
+              <h2 className={`elegant-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight ${isVisible ? 'animate-fade-in-right delay-500' : 'opacity-0'}`}>
                 Our commitment to<br />
-                freshness and quality
+                <span className="text-yellow-500">freshness</span> and quality
               </h2>
 
-              {/* Description */}
-              <p className={`body-text text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-xl ${isVisible ? 'animate-fade-in-right delay-600' : 'opacity-0'}`}>
+              {/* Description - Light Gray for readability */}
+              <p className={`body-text text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl ${isVisible ? 'animate-fade-in-right delay-600' : 'opacity-0'}`}>
                 We believe exceptional dining begins with the finest ingredients. That's why we source only the freshest produce, and high-quality spices—often from trusted local farmers.
               </p>
 
-              {/* Learn More Button */}
-              <div className={`pt-4 ${isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
+              {/* Stats with Yellow-500 Numbers */}
+              <div className={`grid grid-cols-3 gap-4 pt-4 ${isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
+                <div className="text-center sm:text-left">
+                  <p className="elegant-title text-3xl font-bold text-yellow-500">15+</p>
+                  <p className="body-text text-xs text-gray-400 mt-1">Years of Excellence</p>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="elegant-title text-3xl font-bold text-yellow-500">50+</p>
+                  <p className="body-text text-xs text-gray-400 mt-1">Local Partners</p>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="elegant-title text-3xl font-bold text-yellow-500">100%</p>
+                  <p className="body-text text-xs text-gray-400 mt-1">Fresh Ingredients</p>
+                </div>
+              </div>
+
+              {/* Learn More Button with Yellow-500 */}
+              <div className={`pt-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center ${isVisible ? 'animate-fade-in-up delay-700' : 'opacity-0'}`}>
                 <Link 
                   href="/about"
-                  className="learn-more-btn inline-flex items-center gap-3 border-2 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black text-black dark:text-white px-8 lg:px-10 py-3 lg:py-4 text-base lg:text-lg font-semibold uppercase tracking-wider transition-all duration-300 relative group"
+                  className="learn-more-btn inline-flex items-center gap-3 border-2 border-yellow-500 bg-yellow-500 hover:bg-transparent text-black hover:text-yellow-500 px-8 lg:px-10 py-3 lg:py-4 text-base lg:text-lg font-semibold uppercase tracking-wider transition-all duration-300 relative group"
                 >
                   <span className="relative z-10">Learn More</span>
                   <svg 
@@ -280,19 +267,28 @@ export default function CommitmentSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
+                
+                {/* Secondary link */}
+                <Link 
+                  href="/menu"
+                  className="text-gray-400 hover:text-yellow-500 text-sm font-medium transition-colors duration-300"
+                >
+                  View Our Menu →
+                </Link>
               </div>
 
-              {/* Decorative Line */}
-              <div className={`pt-8 ${isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
-                <div className="w-24 h-px bg-gray-300 dark:bg-gray-700"></div>
+              {/* Decorative Line with Yellow-500 Gradient */}
+              <div className={`pt-4 ${isVisible ? 'animate-fade-in-up delay-700' : 'opacity-0'}`}>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-yellow-500 to-transparent"></div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Background Decorative Element */}
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gray-200/50 dark:bg-gray-800/30 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-gray-200/50 dark:bg-gray-800/30 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Background Decorative Elements - Yellow tinted */}
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-yellow-500/3 rounded-full blur-3xl pointer-events-none"></div>
       </section>
     </>
   );

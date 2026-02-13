@@ -1,17 +1,16 @@
 import CommitmentSection from "@/homePage/CommitmentSection/CommitmentSection";
-import HeroSection from "@/homePage/heroSection/HeroSection";
+import GallerySection from "@/homePage/Gallerysection/GallerySection";
 import PremiumHeroSection from "@/homePage/PremiumHeroSection/PremiumHeroSection";
 import Footer from "@/shared/Footer/Footer";
-import Navbar from "@/shared/Navbar/Navbar";
+import HeroSectionWithNavbar from "@/shared/HeroSectionWithNavbar/HeroSectionWithNavbar";
 
 
 export default function Home() {
   return (
     <div>
-      <Navbar></Navbar>
-      <HeroSection></HeroSection>
+     <HeroSectionWithNavbar></HeroSectionWithNavbar>
 
-
+       <GallerySection></GallerySection>
       <CommitmentSection></CommitmentSection>
       <PremiumHeroSection></PremiumHeroSection>
       <Footer></Footer>
