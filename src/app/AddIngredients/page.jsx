@@ -134,19 +134,19 @@ export default function AddIngredients() {
           <div className="lg:col-span-2 space-y-6">
             {/* Quick Input Methods */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <Link href="/ingredients/add/manual" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/manual" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <FileText className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Manual</span>
               </Link>
-              <Link href="/ingredients/add/voice" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/voice" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <Mic className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Voice</span>
               </Link>
-              <Link href="/ingredients/add/scan" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="scan" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <Barcode className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Scan</span>
               </Link>
-              <Link href="/ingredients/add/bulk" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
+              <Link href="/bulk" className="bg-gray-900/50 hover:bg-gray-900 border border-gray-800 hover:border-yellow-500 rounded-lg p-4 text-center transition-all group">
                 <Package className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <span className="text-sm">Bulk</span>
               </Link>

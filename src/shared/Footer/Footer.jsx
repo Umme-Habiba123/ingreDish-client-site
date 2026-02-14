@@ -43,10 +43,19 @@ export default function Footer() {
           </p>
 
           <div className="flex gap-4 mt-6">
-            <Instagram className="w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors" />
-            <Facebook className="w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors" />
-            <Twitter className="w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors" />
-          </div>
+  <a href="https://www.instagram.com/mahiya_mimu/" target="_blank" rel="noopener noreferrer">
+    <Instagram className="w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors" />
+  </a>
+
+  <a href="https://www.facebook.com/mahiya.rahman.540132" target="_blank" rel="noopener noreferrer">
+    <Facebook className="w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors" />
+  </a>
+
+  <a href="https://x.com/mahiya_rehman" target="_blank" rel="noopener noreferrer">
+    <Twitter className="w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors" />
+  </a>
+</div>
+
         </div>
 
         {/* Information */}

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Calendar, User, ArrowRight, Tag, TrendingUp } from 'lucide-react';
 
-export default function Blog() {
+export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isVisible, setIsVisible] = useState(false);
@@ -167,27 +167,27 @@ export default function Blog() {
         }
       `}</style>
 
-      <div className="min-h-screen bg-white dark:bg-neutral">
+      <div className="min-h-screen bg-black">
         
         {/* Hero Section */}
-        <section className="relative py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-white dark:from-neutral dark:to-base-300 overflow-hidden">
+        <section className="relative py-20 lg:py-32 bg-black overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               
               {/* Badge */}
-              <div className={`inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-4 py-2 rounded-full mb-6 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}>
+              <div className={`inline-flex items-center gap-2 bg-yellow-500 text-black px-4 py-2 rounded-full mb-6 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}>
                 <TrendingUp className="w-4 h-4" />
                 <span className="body-text text-sm font-semibold uppercase tracking-wider">Our Blog</span>
               </div>
 
               {/* Main Title */}
-              <h1 className={`elegant-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black dark:text-white mb-6 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
+              <h1 className={`elegant-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
                 Stories & Recipes from<br />
                 Our Kitchen
               </h1>
 
               {/* Description */}
-              <p className={`body-text text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
+              <p className={`body-text text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-10 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
                 Discover culinary inspiration, cooking tips, and behind-the-scenes stories from the Ingredish team.
               </p>
 
@@ -200,7 +200,7 @@ export default function Blog() {
                     placeholder="Search articles..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-white dark:bg-base-100 border-2 border-gray-200 dark:border-gray-700 focus:border-black dark:focus:border-white rounded-full body-text text-black dark:text-white placeholder:text-gray-400 focus:outline-none transition-colors"
+                    className="w-full pl-12 pr-4 py-4 bg-neutral border-2 border-gray-700 focus:border-yellow-500 rounded-full body-text text-white placeholder:text-gray-500 focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -208,8 +208,8 @@ export default function Blog() {
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-10 left-10 w-20 h-20 bg-black/5 dark:bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-black/5 dark:bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-10 w-20 h-20 bg-yellow-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-yellow-500/10 rounded-full blur-3xl"></div>
         </section>
 
         {/* Main Content */}
@@ -222,8 +222,8 @@ export default function Blog() {
                 <div className="sticky top-8 space-y-8">
                   
                   {/* Categories */}
-                  <div className={`bg-gray-50 dark:bg-base-200 rounded-2xl p-6 ${isVisible ? 'animate-fade-in-up delay-500' : 'opacity-0'}`}>
-                    <h3 className="elegant-title text-2xl font-bold text-black dark:text-white mb-6 flex items-center gap-2">
+                  <div className={`bg-neutral rounded-2xl p-6 border border-gray-800 ${isVisible ? 'animate-fade-in-up delay-500' : 'opacity-0'}`}>
+                    <h3 className="elegant-title text-2xl font-bold text-yellow-500 mb-6 flex items-center gap-2">
                       <Tag className="w-5 h-5" />
                       Categories
                     </h3>
@@ -234,8 +234,8 @@ export default function Blog() {
                           onClick={() => setSelectedCategory(category.id)}
                           className={`w-full text-left px-4 py-3 rounded-lg body-text font-medium transition-all ${
                             selectedCategory === category.id
-                              ? 'bg-black dark:bg-white text-white dark:text-black'
-                              : 'bg-white dark:bg-base-100 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-base-300'
+                              ? 'bg-yellow-500 text-black'
+                              : 'bg-black border border-gray-800 text-gray-300 hover:bg-gray-900'
                           }`}
                         >
                           <div className="flex justify-between items-center">
@@ -248,15 +248,15 @@ export default function Blog() {
                   </div>
 
                   {/* Popular Tags */}
-                  <div className={`bg-gray-50 dark:bg-base-200 rounded-2xl p-6 ${isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
-                    <h3 className="elegant-title text-2xl font-bold text-black dark:text-white mb-6">
+                  <div className={`bg-neutral rounded-2xl p-6 border border-gray-800 ${isVisible ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
+                    <h3 className="elegant-title text-2xl font-bold text-yellow-500 mb-6">
                       Popular Tags
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {['Italian', 'Pasta', 'Vegetarian', 'Desserts', 'Wine', 'Seasonal'].map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1.5 bg-white dark:bg-base-100 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm body-text hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
+                          className="px-3 py-1.5 bg-black border border-gray-700 text-gray-300 rounded-full text-sm body-text hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-colors cursor-pointer"
                         >
                           {tag}
                         </span>
@@ -273,7 +273,7 @@ export default function Blog() {
                     {filteredPosts.map((post, index) => (
                       <article
                         key={post.id}
-                        className={`blog-card bg-white dark:bg-base-200 rounded-2xl overflow-hidden shadow-lg ${
+                        className={`blog-card bg-neutral rounded-2xl overflow-hidden shadow-lg border border-gray-800 ${
                           isVisible ? `animate-scale-in delay-${(index + 3) * 100}` : 'opacity-0'
                         } ${post.featured ? 'sm:col-span-2' : ''}`}
                       >
@@ -285,7 +285,7 @@ export default function Blog() {
                             className="w-full h-full object-cover"
                           />
                           {post.featured && (
-                            <div className="absolute top-4 left-4 bg-black text-white px-4 py-2 rounded-full body-text text-sm font-semibold uppercase tracking-wider">
+                            <div className="absolute top-4 left-4 bg-yellow-500 text-black px-4 py-2 rounded-full body-text text-sm font-semibold uppercase tracking-wider">
                               Featured
                             </div>
                           )}
@@ -294,7 +294,7 @@ export default function Blog() {
                         {/* Content */}
                         <div className="p-6 lg:p-8">
                           {/* Meta */}
-                          <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-500 dark:text-gray-400 body-text">
+                          <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-400 body-text">
                             <span className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
                               {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -303,38 +303,44 @@ export default function Blog() {
                               <User className="w-4 h-4" />
                               {post.author}
                             </span>
-                            <span className="text-black dark:text-white font-medium">
+                            <span className="text-yellow-500 font-medium">
                               {post.readTime}
                             </span>
                           </div>
 
                           {/* Title */}
-                          <h2 className="elegant-title text-2xl lg:text-3xl font-bold text-black dark:text-white mb-3 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-                            <Link href={`/blog/${post.id}`}>
+                          <h2 className="elegant-title text-2xl lg:text-3xl font-bold text-white mb-3 hover:text-yellow-500 transition-colors">
+                            <a 
+                              href={`https://www.google.com/search?q=${encodeURIComponent(post.title + ' recipe cooking tips')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               {post.title}
-                            </Link>
+                            </a>
                           </h2>
 
                           {/* Excerpt */}
-                          <p className="body-text text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                          <p className="body-text text-gray-400 mb-6 leading-relaxed">
                             {post.excerpt}
                           </p>
 
                           {/* Read More */}
-                          <Link
-                            href={`/blog/${post.id}`}
-                            className="inline-flex items-center gap-2 text-black dark:text-white body-text font-semibold hover:gap-3 transition-all group"
+                          <a
+                            href={`https://www.google.com/search?q=${encodeURIComponent(post.title + ' recipe cooking tips')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-yellow-500 body-text font-semibold hover:gap-3 transition-all group"
                           >
                             Read More
                             <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-                          </Link>
+                          </a>
                         </div>
                       </article>
                     ))}
                   </div>
                 ) : (
                   <div className="text-center py-20">
-                    <p className="body-text text-xl text-gray-500 dark:text-gray-400">
+                    <p className="body-text text-xl text-gray-400">
                       No blog posts found. Try a different search or category.
                     </p>
                   </div>
@@ -344,11 +350,11 @@ export default function Blog() {
                 {filteredPosts.length > 0 && (
                   <div className="mt-12 flex justify-center">
                     <div className="join">
-                      <button className="join-item btn btn-ghost border border-gray-200 dark:border-gray-700">«</button>
-                      <button className="join-item btn bg-black dark:bg-white text-white dark:text-black border-none">1</button>
-                      <button className="join-item btn btn-ghost border border-gray-200 dark:border-gray-700">2</button>
-                      <button className="join-item btn btn-ghost border border-gray-200 dark:border-gray-700">3</button>
-                      <button className="join-item btn btn-ghost border border-gray-200 dark:border-gray-700">»</button>
+                      <button className="join-item btn bg-neutral hover:bg-gray-900 text-white border-gray-800">«</button>
+                      <button className="join-item btn bg-yellow-500 hover:bg-yellow-600 text-black border-none">1</button>
+                      <button className="join-item btn bg-neutral hover:bg-gray-900 text-white border-gray-800">2</button>
+                      <button className="join-item btn bg-neutral hover:bg-gray-900 text-white border-gray-800">3</button>
+                      <button className="join-item btn bg-neutral hover:bg-gray-900 text-white border-gray-800">»</button>
                     </div>
                   </div>
                 )}
@@ -358,25 +364,25 @@ export default function Blog() {
         </section>
 
         {/* Newsletter Section */}
-        <section className="py-16 lg:py-24 bg-black dark:bg-base-300">
+        <section className="py-16 lg:py-24 bg-neutral border-t border-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="elegant-title text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Subscribe to Our Newsletter
               </h2>
-              <p className="body-text text-lg text-gray-300 mb-8">
+              <p className="body-text text-lg text-gray-400 mb-8">
                 Get the latest recipes, cooking tips, and restaurant news delivered to your inbox.
               </p>
               <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 bg-white dark:bg-base-100 text-black dark:text-white rounded-full body-text focus:outline-none focus:ring-2 focus:ring-white"
+                  className="flex-1 px-6 py-4 bg-black border-2 border-gray-800 focus:border-yellow-500 text-white rounded-full body-text focus:outline-none transition-colors"
                   required
                 />
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-white hover:bg-gray-100 text-black rounded-full body-text font-semibold uppercase tracking-wider transition-all transform hover:scale-105"
+                  className="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-black rounded-full body-text font-semibold uppercase tracking-wider transition-all transform hover:scale-105"
                 >
                   Subscribe
                 </button>
