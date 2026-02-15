@@ -15,7 +15,7 @@ export default function ProductDetails() {
     const fetchProduct = async () => {
       try {
         const res = await fetch(
-          `https://ingredish-server-site.vercel.app/api/products/${params.id}`,
+          `http://localhost:5000/api/products/${params.id}`,
         );
         const data = await res.json();
         setProduct(data);
