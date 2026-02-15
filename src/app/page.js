@@ -1,19 +1,16 @@
 import CommitmentSection from "@/homePage/CommitmentSection/CommitmentSection";
-import GallerySection from "@/homePage/Gallerysection/GallerySection";
+// import GallerySection from "@/homePage/Gallerysection/GallerySection";
 import PremiumHeroSection from "@/homePage/PremiumHeroSection/PremiumHeroSection";
-import Footer from "@/shared/Footer/Footer";
-import HeroSectionWithNavbar from "@/shared/HeroSectionWithNavbar/HeroSectionWithNavbar";
+import Products from "./products/page";
 
 
 export default function Home() {
   return (
     <div>
-     <HeroSectionWithNavbar></HeroSectionWithNavbar>
-
-       <GallerySection></GallerySection>
+      <Products></Products>
+       {/* <GallerySection></GallerySection> */}
       <CommitmentSection></CommitmentSection>
       <PremiumHeroSection></PremiumHeroSection>
-      <Footer></Footer>
     </div>
   );
 }
