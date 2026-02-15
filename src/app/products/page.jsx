@@ -57,7 +57,7 @@ export default function Products() {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/products?search=${text}`,
+        `https://ingredish-server-site.vercel.app/api/products?search=${text}`,
       );
       const data = await res.json();
       console.log("API Response:", data); // Should show array of products
