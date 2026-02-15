@@ -17,8 +17,8 @@ import {
 
 export default function HeroSectionWithNavbar() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false) ;
+  const [currentSlide, setCurrentSlide] = useState(0) ;
   const [formData, setFormData] = useState({
     person: '',
     date: '',
