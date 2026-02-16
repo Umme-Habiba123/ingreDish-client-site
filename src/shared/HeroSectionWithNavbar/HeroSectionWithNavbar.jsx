@@ -286,7 +286,7 @@ export default function HeroSectionWithNavbar() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl">
                 {/* Subtitle */}
-                <p className={`elegant-script text-2xl sm:text-3xl lg:text-4xl text-yellow-400 mb-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
+                <p className={`elegant-script text-2xl sm:text-3xl lg:text-4xl  text-yellow-400 mb-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
                   {slides[currentSlide].subtitle}
                 </p>
 
