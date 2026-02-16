@@ -42,7 +42,7 @@ export default function Login() {
                 placeholder="Enter your email"
                 className="input input-bordered w-full bg-white border-2 border-gray-100 focus:border-yellow-500 focus:outline-none text-black placeholder-gray-00"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value) }
                 required
               />
             </div>
