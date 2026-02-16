@@ -3,6 +3,7 @@ import "./globals.css";
 import HeroSectionWithNavbar from "@/shared/HeroSectionWithNavbar/HeroSectionWithNavbar";
 import Footer from "@/shared/Footer/Footer";
 import AuthProvider from "./context/AuthProvider";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +29,10 @@ export default function RootLayout({ children }) {
        <AuthProvider>
          <HeroSectionWithNavbar></HeroSectionWithNavbar>
         {children}
+          
         <Footer></Footer>
        </AuthProvider>
+        <ToastContainer />
       </body>
     </html>
   );

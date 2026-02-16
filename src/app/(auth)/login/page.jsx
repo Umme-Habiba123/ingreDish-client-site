@@ -1,13 +1,45 @@
 'use client';
 
 import useAuth from '@/app/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
+import { toast } from 'react-toastify';
 export default function Login() {
+  const router =useRouter()
   const { signInWithGoogle, signInUser, user}=useAuth()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+const handleLogIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    signInUser(email, password)
+      .then((result) => {
+        toast.success('Successfully loged in')
+        console.log(result.user);
+        navigate(location.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        toast.success('Login Successfully!')
+        console.log(result.user);
+        navigate(location.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +67,7 @@ export default function Login() {
             Welcome Back
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleLogIn} className="space-y-5">
             {/* Email Input */}
             <div className="form-control">
               <label className="label">
@@ -43,6 +75,7 @@ export default function Login() {
               </label>
               <input
                 type="email"
+                name='email'
                 placeholder="Enter your email"
                 className="input input-bordered w-full bg-white border-2 border-gray-100 focus:border-yellow-500 focus:outline-none text-black placeholder-gray-00"
                 value={email}
@@ -58,6 +91,7 @@ export default function Login() {
               </label>
               <div className="relative">
                 <input
+                name='password'
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
                   className="input input-bordered w-full bg-white border-2 border-gray-100 focus:border-yellow-500 focus:outline-none text-black placeholder-gray-400 pr-12"
@@ -99,7 +133,8 @@ export default function Login() {
             </div>
 
             {/* Login Button */}
-            <button
+            <button 
+            onClick={handleLogIn}
               type="submit"
               className="btn w-full bg-yellow-500 hover:bg-yellow-600 border-none text-black font-bold text-lg h-12 rounded-lg shadow-lg hover:shadow-xl transition-all"
             >
@@ -112,7 +147,9 @@ export default function Login() {
 
           {/* Social Login Buttons */}
           <div className="space-y-3">
-            <button className="btn btn-outline w-full text-black hover:bg-black hover:text-white  font-semibold border-gray-200">
+            <button 
+            onClick={handleGoogleSignIn}
+            className="btn btn-outline w-full text-black hover:bg-black hover:text-white  font-semibold border-gray-200">
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
