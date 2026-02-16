@@ -1,15 +1,18 @@
 'use client';
 
+import useAuth from '@/app/hooks/useAuth';
 import { useState } from 'react';
 
 export default function Login() {
+  const { signInWithGoogle, signInUser, user}=useAuth()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login attempt:', { email, password });
+    signInUser()
+    // console.log('Login attempt:', { email, password });
   };
 
   return (

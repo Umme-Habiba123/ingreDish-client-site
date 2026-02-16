@@ -1,3 +1,5 @@
+"use client"
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -7,12 +9,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC1FMSadYRFutyJvSKkyc8X0YTWER88G7k",
-  authDomain: "ingredish-e54ad.firebaseapp.com",
-  projectId: "ingredish-e54ad",
-  storageBucket: "ingredish-e54ad.firebasestorage.app",
-  messagingSenderId: "375666798950",
-  appId: "1:375666798950:web:5efe0a4149f8f7fa64d8a7"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
