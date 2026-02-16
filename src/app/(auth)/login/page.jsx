@@ -11,7 +11,8 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInUser()
+     signInUser()
+     alert('Login Succesfully')
     // console.log('Login attempt:', { email, password });
   };
 
@@ -23,7 +24,7 @@ export default function Login() {
           <h1 className="text-5xl md:text-6xl font-bold text-yellow-500 mb-2">
             Ingredish
           </h1>
-          <p className="text-white text-sm md:text-base">
+          <p className="text-white text-sm md:text-base ">
             Your Food, Your Way
           </p>
         </div>
