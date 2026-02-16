@@ -215,7 +215,7 @@ export default function HeroSectionWithNavbar() {
               </Link>
 
               {/* Right Icons - Desktop */}
-              <div className="hidden lg:flex items-center gap-6">
+              {/* <div className="hidden lg:flex items-center gap-6">
                 <button className="text-white hover:text-gray-300 transition-colors">
                   <Search className="w-5 h-5" />
                 </button>
@@ -225,6 +225,11 @@ export default function HeroSectionWithNavbar() {
                     0
                   </span>
                 </button>
+              </div> */}
+
+              <div>
+                <Link href={'/login'} className='btn btn-ghost hover:bg-yellow-600 border-none  bg-none'>Login</Link>
+
               </div>
 
               {/* Mobile Menu Button */}
