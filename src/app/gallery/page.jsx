@@ -26,7 +26,7 @@ export default function FoodGallery() {
       category: 'BREAKFAST',
       image: '/assests/b1.jpg',
       title: 'Fluffy Pancakes',
-      description: 'Soft and fluffy homemade pancakes topped with fresh berries and maple syrup. Perfect morning treat.',
+      description: 'Soft and fluffy homemade pancakes topped with fresh berries and maple syrup. Perfect morning treat .',
       prepTime: '15',
       difficulty: 'Easy',
       serves: '4',
