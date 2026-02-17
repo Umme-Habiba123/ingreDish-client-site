@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🍽️ Ingredish  
+### Ingredient-Based Recipe Finder (Work in Progress 🚧)
 
-## Getting Started
+Ingredish is a modern web application that helps users discover recipes based on the ingredients they already have at home.
 
-First, run the development server:
+Instead of searching randomly, users can simply select their available ingredients and instantly get matching dishes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Live Preview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+🚧 Currently in development  
+(Deployment coming soon)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🖼️ Screenshot
 
-To learn more about Next.js, take a look at the following resources:
+(https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> Add your homepage screenshot as `public/screenshot.png`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+✅ Ingredient selection system  
+✅ Smart recipe matching logic  
+✅ Ignores common ingredients (oil, salt, sugar, chili, etc.)  
+✅ Clean and responsive UI  
+✅ Dynamic routing with Next.js App Router  
+✅ Recipe results displayed in card layout  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧠 How The Matching Logic Works
+
+1. User selects ingredients.
+2. Clicks **Find Recipe**.
+3. The system removes common kitchen ingredients from comparison.
+4. Custom filtering algorithm checks if recipe ingredients match selected items.
+5. Matching recipes are displayed on the `/recipes` route.
+
+This ensures more accurate and meaningful recipe suggestions.
+
+---
+
+## 🛠️ Tech Stack
+
+- ⚛️ Next.js (App Router)
+- 🎨 Tailwind CSS
+- 🌼 DaisyUI
+- 📦 Local JSON data
+- 🧩 Custom filtering algorithm
+
+---
+
+## 📂 Folder Structure
+
