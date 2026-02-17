@@ -1,59 +1,40 @@
-# 🍽️ Ingredish  
-### Ingredient-Based Recipe Finder (Work in Progress 🚧)
+# 🍽️ Ingredish
 
-Ingredish is a modern web application that helps users discover recipes based on the ingredients they already have at home.
-
-Instead of searching randomly, users can simply select their available ingredients and instantly get matching dishes.
+Ingredish হলো একটি **ingredient-based recipe website**, যেখানে ইউজাররা তাদের কাছে থাকা উপাদানগুলো দিয়ে সহজেই রেসিপি খুঁজে পেতে পারে। এটি **Next.js, Tailwind CSS, DaisyUI** ব্যবহার করে বানানো হয়েছে।  
 
 ---
 
-## 🌟 Live Preview
-
-🚧 Currently in development  
-(Deployment coming soon)
+## 🔗 Live Demo
+[Click here to see the live project]  (https://your-live-project-link.com)  
 
 ---
 
-## 🖼️ Screenshot
+## 📸 Screenshot
 
-(https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)
+[![Ingredish Screenshot](./screenshots/ingreDish.png)](https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)  
 
-> Add your homepage screenshot as [https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png]
-
----
-
-## ✨ Features
-
-✅ Ingredient selection system  
-✅ Smart recipe matching logic  
-✅ Ignores common ingredients (oil, salt, sugar, chili, etc.)  
-✅ Clean and responsive UI  
-✅ Dynamic routing with Next.js App Router  
-✅ Recipe results displayed in card layout  
-
----
-
-## 🧠 How The Matching Logic Works
-
-1. User selects ingredients.
-2. Clicks **Find Recipe**.
-3. The system removes common kitchen ingredients from comparison.
-4. Custom filtering algorithm checks if recipe ingredients match selected items.
-5. Matching recipes are displayed on the `/recipes` route.
-
-This ensures more accurate and meaningful recipe suggestions.
+> ক্লিক করলে লাইভ প্রজেক্টে নিয়ে যাবে।
 
 ---
 
 ## 🛠️ Tech Stack
 
-- ⚛️ Next.js (App Router)
-- 🎨 Tailwind CSS
-- 🌼 DaisyUI
-- 📦 Local JSON data
-- 🧩 Custom filtering algorithm
+- **Frontend:** Next.js, React, Tailwind CSS, DaisyUI  
+- **Icons:** Lucide Icons  
+- **Hosting:** GitHub Pages / Vercel (আপনার setup অনুযায়ী)  
 
 ---
 
-## 📂 Folder Structure
+## ✨ Features
+
+- Ingredient-based recipe search  
+- Browse recipes by category  
+- Food gallery with nice card layout  
+- Responsive design (mobile + desktop friendly)  
+- Light & Dark mode support  
+- Clean UI with Tailwind CSS  
+
+---
+
+## 📁 Folder Structure
 
