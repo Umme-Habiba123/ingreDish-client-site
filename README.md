@@ -37,16 +37,29 @@ Ingredish হলো একটি **ingredient-based recipe website**, যেখ�
 
 ## 📁 Folder Structure
 --ingredish/
+
 │
 ├─ public/screenshots/ingreDish.png # Screenshot
+
 ├─ pages/
+
 │ ├─ index.js
+
 │ ├─ gallery.js
+
 │ └─ ...
+
 ├─ components/
+
 │ ├─ Navbar.js
+
 │ ├─ Footer.js
+
 │ └─ ...
+
 ├─ styles/
+
 │ └─ globals.css
+
 └─ README.md
+
