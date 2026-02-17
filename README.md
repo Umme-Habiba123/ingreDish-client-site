@@ -5,11 +5,12 @@ Ingredish হলো একটি **ingredient-based recipe website**, যেখ�
 ---
 
 ## 🔗 Live Demo
-[Click here to see the live project]  (https://your-live-project-link.com)  
+[Click here to see the live project]  
+
+(https://your-live-project-link.com)  
 
 ---
 
-## 📸 Screenshot
 
  (https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)
 
