@@ -11,11 +11,9 @@ Ingredish হলো একটি **ingredient-based recipe website**, যেখ�
 
 ## 📸 Screenshot
 
-[![Ingredish Screenshot](./screenshots/ingreDish.png)](https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)  
+ (https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)
 
-> ক্লিক করলে লাইভ প্রজেক্টে নিয়ে যাবে।
 
----
 
 ## 🛠️ Tech Stack
 
