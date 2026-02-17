@@ -18,7 +18,7 @@ Instead of searching randomly, users can simply select their available ingredien
 
 (https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png)
 
-> Add your homepage screenshot as `public/screenshot.png`
+> Add your homepage screenshot as [https://i.ibb.co.com/M4ZhgK0/Screenshot-2026-02-17-063712.png]
 
 ---
 
