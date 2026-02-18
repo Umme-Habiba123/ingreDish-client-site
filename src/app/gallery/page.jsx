@@ -20,12 +20,26 @@ export default function FoodGallery() {
   const [selectedFood, setSelectedFood] = useState(null);
 
   const [foodItems, setFoodItems] = useState([]);
-  const [showAddModal, setShowAddModal]= useState(false)
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/gallery")
+  //     .then((res) => res.json())
+  //     .then((data) => setFoodItems(data));
+  // }, []);
+
+    const fetchFoodItems = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/gallery");
+      const data = await res.json();
+      setFoodItems(data);
+    } catch (error) {
+      console.error("Failed to fetch food items:", error);
+    }
+  };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/gallery")
-      .then((res) => res.json())
-      .then((data) => setFoodItems(data));
+    fetchFoodItems();
   }, []);
 
   const categories = [
@@ -68,9 +82,10 @@ export default function FoodGallery() {
           </p>
 
           {/* Add Recipe Button */}
-          <button 
-          onClick={()=> setShowAddModal(true)}
-          className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-full transition-all shadow-lg hover:shadow-yellow-500/50 inline-flex items-center gap-3 group">
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-full transition-all shadow-lg hover:shadow-yellow-500/50 inline-flex items-center gap-3 group"
+          >
             <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
             Add Recipe
           </button>
@@ -104,7 +119,7 @@ export default function FoodGallery() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
           {filteredItems.map((item, index) => (
             <div
-              key={item.id}
+              key={item._id}
               onClick={() => setSelectedFood(item)}
               className="group cursor-pointer bg-gray-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 hover:-translate-y-2 border border-gray-800"
             >
@@ -418,158 +433,147 @@ export default function FoodGallery() {
         </div>
       )}
 
-
-
-
       {/* modal    */}
 
+      {/* Add Recipe Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-gray-900 w-full max-w-2xl rounded-3xl p-8 border border-gray-800 shadow-2xl relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowAddModal(false)}
+              className="absolute top-4 right-4 bg-gray-800 p-2 rounded-full hover:bg-yellow-500 transition"
+            >
+              <X className="w-5 h-5 text-white hover:text-black" />
+            </button>
 
-    {/* Add Recipe Modal */}
-{showAddModal && (
-  <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-    
-    <div className="bg-gray-900 w-full max-w-2xl rounded-3xl p-8 border border-gray-800 shadow-2xl relative">
+            <h2 className="text-3xl font-bold text-white mb-6 text-center">
+              Add New Recipe
+            </h2>
 
-      {/* Close Button */}
-      <button
-        onClick={() => setShowAddModal(false)}
-        className="absolute top-4 right-4 bg-gray-800 p-2 rounded-full hover:bg-yellow-500 transition"
-      >
-        <X className="w-5 h-5 text-white hover:text-black" />
-      </button>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
 
-      <h2 className="text-3xl font-bold text-white mb-6 text-center">
-        Add New Recipe
-      </h2>
+                const form = e.target;
 
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
+                const newRecipe = {
+                  title: form.title.value,
+                  image: form.image.value,
+                  category: form.category.value,
+                  description: form.description.value,
+                  prepTime: Number(form.prepTime.value),
+                  difficulty: form.difficulty.value,
+                  serves: Number(form.serves.value),
+                  calories: Number(form.calories.value),
+                  rating: 4.5,
+                };
 
-          const form = e.target;
+                await fetch("http://localhost:5000/api/gallery", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(newRecipe),
+                });
 
-          const newRecipe = {
-            title: form.title.value,
-            image: form.image.value,
-            category: form.category.value,
-            description: form.description.value,
-            prepTime: Number(form.prepTime.value),
-            difficulty: form.difficulty.value,
-            serves: Number(form.serves.value),
-            calories: Number(form.calories.value),
-            rating: 4.5
-          };
+                // Reload Data
+                const res = await fetch("http://localhost:5000/api/gallery");
+                const data = await res.json();
+                setFoodItems(data);
 
-          await fetch("http://localhost:5000/api/gallery", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newRecipe)
-          });
+                setShowAddModal(false);
+                form.reset();
+              }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
+              {/* Title */}
+              <input
+                name="title"
+                placeholder="Recipe Title"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              />
 
-          // Reload Data
-          const res = await fetch("http://localhost:5000/api/gallery");
-          const data = await res.json();
-          setFoodItems(data);
+              {/* Image URL */}
+              <input
+                name="image"
+                placeholder="Image URL"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              />
 
-          setShowAddModal(false);
-          form.reset();
-        }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
-      >
+              {/* Category */}
+              <select
+                name="category"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              >
+                <option value="">Select Category</option>
+                <option value="BREAKFAST">Breakfast</option>
+                <option value="LUNCH">Lunch</option>
+                <option value="DINNER">Dinner</option>
+                <option value="SNACKS">Snacks</option>
+                <option value="DESSERTS">Desserts</option>
+                <option value="BEVERAGES">Beverages</option>
+              </select>
 
-        {/* Title */}
-        <input
-          name="title"
-          placeholder="Recipe Title"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        />
+              {/* Difficulty */}
+              <select
+                name="difficulty"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              >
+                <option value="">Difficulty</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+              </select>
 
-        {/* Image URL */}
-        <input
-          name="image"
-          placeholder="Image URL"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        />
+              {/* Prep Time */}
+              <input
+                name="prepTime"
+                type="number"
+                placeholder="Prep Time (minutes)"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              />
 
-        {/* Category */}
-        <select
-          name="category"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        >
-          <option value="">Select Category</option>
-          <option value="BREAKFAST">Breakfast</option>
-          <option value="LUNCH">Lunch</option>
-          <option value="DINNER">Dinner</option>
-          <option value="SNACKS">Snacks</option>
-          <option value="DESSERTS">Desserts</option>
-          <option value="BEVERAGES">Beverages</option>
-        </select>
+              {/* Serves */}
+              <input
+                name="serves"
+                type="number"
+                placeholder="Serves"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              />
 
-        {/* Difficulty */}
-        <select
-          name="difficulty"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        >
-          <option value="">Difficulty</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-        </select>
+              {/* Calories */}
+              <input
+                name="calories"
+                type="number"
+                placeholder="Calories"
+                required
+                className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
+              />
 
-        {/* Prep Time */}
-        <input
-          name="prepTime"
-          type="number"
-          placeholder="Prep Time (minutes)"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        />
+              {/* Description (Full width) */}
+              <textarea
+                name="description"
+                placeholder="Recipe Description"
+                required
+                className="md:col-span-2 bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500 h-24 resize-none"
+              />
 
-        {/* Serves */}
-        <input
-          name="serves"
-          type="number"
-          placeholder="Serves"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        />
-
-        {/* Calories */}
-        <input
-          name="calories"
-          type="number"
-          placeholder="Calories"
-          required
-          className="bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500"
-        />
-
-        {/* Description (Full width) */}
-        <textarea
-          name="description"
-          placeholder="Recipe Description"
-          required
-          className="md:col-span-2 bg-gray-800 text-white p-3 rounded-xl outline-none border border-gray-700 focus:border-yellow-500 h-24 resize-none"
-        />
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="md:col-span-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-xl transition-all shadow-lg hover:shadow-yellow-500/50"
-        >
-          Add Recipe
-        </button>
-
-      </form>
-    </div>
-  </div>
-)}
-
-
-
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="md:col-span-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-xl transition-all shadow-lg hover:shadow-yellow-500/50"
+              >
+                Add Recipe
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
