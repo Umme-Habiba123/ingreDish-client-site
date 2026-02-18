@@ -126,13 +126,18 @@ export default function FoodGallery() {
               {/* Image Container */}
               <div className="relative overflow-hidden h-72">
                 {/* Next.js Image Component */}
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
+               <Image
+  src={
+    item.image
+      ? item.image.startsWith("http")
+        ? item.image
+        : `http://localhost:5000/${item.image}`
+      : "/default-food.jpg" // local default fallback
+  }
+  alt={item.title || "Food Image"}
+  fill
+  className="object-cover"
+/>
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
