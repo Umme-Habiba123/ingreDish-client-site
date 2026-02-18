@@ -21,8 +21,9 @@ import {
   Wheat
 } from 'lucide-react';
 
-import { findRecipes } from "@/utils/findRecipes"; // 🔥 Recipe finder
-import { commonIngredients } from "@/data/common"; // 🔥 Ignore common items
+import { findRecipes } from "@/utils/findRecipes"; 
+import { commonIngredients } from "@/data/common"; 
+import ProtectedRoute from '@/lib/ProtectedRoute';
 
 export default function AddIngredients() {
   const router = useRouter();
@@ -106,7 +107,8 @@ export default function AddIngredients() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+   <ProtectedRoute>
+     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <div className="bg-gradient-to-b from-yellow-500/10 to-transparent border-b border-gray-800">
         <div className="container mx-auto px-4 py-8">
@@ -279,5 +281,6 @@ export default function AddIngredients() {
         </div>
       </div>
     </div>
+   </ProtectedRoute>
   );
 }

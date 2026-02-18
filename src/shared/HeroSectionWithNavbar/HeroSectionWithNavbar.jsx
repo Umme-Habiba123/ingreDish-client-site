@@ -1,51 +1,57 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { 
-  Search, 
-  ShoppingCart, 
-  Menu, 
-  X, 
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Search,
+  ShoppingCart,
+  Menu,
+  X,
   ChevronDown,
   Calendar,
   Clock,
   User,
   ChevronLeft,
-  ChevronRight
-} from 'lucide-react';
+  ChevronRight,
+} from "lucide-react";
+import useAuth from "@/app/hooks/useAuth";
 
 export default function HeroSectionWithNavbar() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false) ;
-  const [currentSlide, setCurrentSlide] = useState(0) ;
-  const [formData, setFormData] = useState( {
-    person: '',
-    date: '',
-    time: ''
+  const { user, signOutUser } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+    const [mounted, setMounted] = useState(false);
+  const [formData, setFormData] = useState({
+    person: "",
+    date: "",
+    time: "",
   });
 
   const slides = [
     {
-      image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop',
-      title: 'Ingredish experience flavors sizzle',
-      subtitle: 'Welcome To Ingredish'
+      image:
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop",
+      title: "Ingredish experience flavors sizzle",
+      subtitle: "Welcome To Ingredish",
     },
     {
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2000&auto=format&fit=crop',
-      title: 'Premium ingredients, exceptional taste',
-      subtitle: 'Culinary Excellence'
+      image:
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2000&auto=format&fit=crop",
+      title: "Premium ingredients, exceptional taste",
+      subtitle: "Culinary Excellence",
     },
     {
-      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop',
-      title: 'Where dining becomes an art',
-      subtitle: 'Experience Luxury'
-    }
+      image:
+        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop",
+      title: "Where dining becomes an art",
+      subtitle: "Experience Luxury",
+    },
   ];
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     // Auto slide every 5 seconds
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -64,28 +70,28 @@ export default function HeroSectionWithNavbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Reservation:', formData);
-    alert('Table reservation submitted!');
+    console.log("Reservation:", formData);
+    alert("Table reservation submitted!");
   };
 
   return (
     <>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
-        
+        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap");
+
         .elegant-script {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: "Cormorant Garamond", serif;
           font-style: italic;
         }
-        
+
         .elegant-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: "Cormorant Garamond", serif;
         }
-        
+
         .body-text {
-          font-family: 'Montserrat', sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
-        
+
         /* Animations */
         @keyframes fadeInDown {
           from {
@@ -97,7 +103,7 @@ export default function HeroSectionWithNavbar() {
             transform: translateY(0);
           }
         }
-        
+
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -108,7 +114,7 @@ export default function HeroSectionWithNavbar() {
             transform: translateY(0);
           }
         }
-        
+
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -117,7 +123,7 @@ export default function HeroSectionWithNavbar() {
             opacity: 1;
           }
         }
-        
+
         @keyframes slideIn {
           from {
             opacity: 0;
@@ -128,36 +134,59 @@ export default function HeroSectionWithNavbar() {
             transform: scale(1);
           }
         }
-        
+
         .animate-fade-in-down {
           animation: fadeInDown 0.8s ease-out forwards;
         }
-        
+
         .animate-fade-in-up {
           animation: fadeInUp 1s ease-out forwards;
         }
-        
+
         .animate-fade-in {
           animation: fadeIn 1s ease-out forwards;
         }
-        
+
         .animate-slide-in {
           animation: slideIn 1.5s ease-out forwards;
         }
-        
-        .delay-100 { animation-delay: 0.1s; opacity: 0; }
-        .delay-200 { animation-delay: 0.2s; opacity: 0; }
-        .delay-300 { animation-delay: 0.3s; opacity: 0; }
-        .delay-400 { animation-delay: 0.4s; opacity: 0; }
-        .delay-500 { animation-delay: 0.5s; opacity: 0; }
-        .delay-600 { animation-delay: 0.6s; opacity: 0; }
-        .delay-700 { animation-delay: 0.7s; opacity: 0; }
-        
+
+        .delay-100 {
+          animation-delay: 0.1s;
+          opacity: 0;
+        }
+        .delay-200 {
+          animation-delay: 0.2s;
+          opacity: 0;
+        }
+        .delay-300 {
+          animation-delay: 0.3s;
+          opacity: 0;
+        }
+        .delay-400 {
+          animation-delay: 0.4s;
+          opacity: 0;
+        }
+        .delay-500 {
+          animation-delay: 0.5s;
+          opacity: 0;
+        }
+        .delay-600 {
+          animation-delay: 0.6s;
+          opacity: 0;
+        }
+        .delay-700 {
+          animation-delay: 0.7s;
+          opacity: 0;
+        }
+
         /* Slide transition */
         .slide-transition {
-          transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+          transition:
+            opacity 0.8s ease-in-out,
+            transform 0.8s ease-in-out;
         }
-        
+
         /* Year badge */
         .year-badge {
           width: 140px;
@@ -170,7 +199,7 @@ export default function HeroSectionWithNavbar() {
           justify-content: center;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
-        
+
         @media (max-width: 768px) {
           .year-badge {
             width: 100px;
@@ -180,34 +209,52 @@ export default function HeroSectionWithNavbar() {
       `}</style>
 
       <div className="relative min-h-screen overflow-hidden bg-black dark:bg-neutral">
-        
         {/* Navbar */}
-        <nav className={`absolute top-0 left-0 right-0 z-50 ${isVisible ? 'animate-fade-in-down' : 'opacity-0'}`}>
+        <nav
+          className={`absolute top-0 left-0 right-0 z-50 ${isVisible ? "animate-fade-in-down" : "opacity-0"}`}
+        >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-20 lg:h-24">
-              
               {/* Left Menu - Desktop */}
               <div className="hidden lg:flex items-center gap-8">
-                <Link href="/" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
+                <Link
+                  href="/"
+                  className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1"
+                >
                   Home <ChevronDown className="w-4 h-4" />
                 </Link>
-                <Link href="/addIngredients" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
-                 Add Ingredients <ChevronDown className="w-4 h-4" />
+                <Link
+                  href="/addIngredients"
+                  className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1"
+                >
+                  Add Ingredients <ChevronDown className="w-4 h-4" />
                 </Link>
-               
-                <Link href="/gallery" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
+
+                <Link
+                  href="/gallery"
+                  className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1"
+                >
                   Gallery <ChevronDown className="w-4 h-4" />
                 </Link>
-                <Link href="/blog" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
+                <Link
+                  href="/blog"
+                  className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1"
+                >
                   Blog <ChevronDown className="w-4 h-4" />
                 </Link>
-                <Link href="/addProduct" className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1">
-                 Add Product <ChevronDown className="w-4 h-4" />
+                <Link
+                  href="/addProduct"
+                  className="text-white hover:text-gray-300 transition-colors body-text font-medium flex items-center gap-1"
+                >
+                  Add Product <ChevronDown className="w-4 h-4" />
                 </Link>
               </div>
 
               {/* Center Logo */}
-              <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
+              <Link
+                href="/"
+                className="absolute left-1/2 transform -translate-x-1/2"
+              >
                 <div className="bg-gradient-to-br from-yellow-100 to-yellow-200 p-4 rounded-lg transform rotate-45">
                   <span className="elegant-title text-2xl lg:text-3xl font-bold text-black block transform -rotate-45">
                     Ingredish
@@ -229,16 +276,34 @@ export default function HeroSectionWithNavbar() {
               </div> */}
 
               <div>
-                <Link href={'/login'} className='btn btn-ghost hover:bg-yellow-600 border-none  bg-none'>Login</Link>
+                {user ? (
+                  <button
+                    onClick={logOut}
+                    className="btn btn-ghost hover:bg-yellow-600 border-none"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="btn btn-ghost hover:bg-yellow-600 border-none"
+                  >
+                    Login
 
+                  </Link>
+                )}
               </div>
 
               {/* Mobile Menu Button */}
-              <button 
+              <button
                 className="lg:hidden text-white z-50"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>
@@ -247,16 +312,45 @@ export default function HeroSectionWithNavbar() {
           {isMobileMenuOpen && (
             <div className="lg:hidden absolute top-20 left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-white/10">
               <div className="container mx-auto px-4 py-6 space-y-4">
-                <Link href="/" className="block text-white hover:text-gray-300 transition-colors body-text">Home</Link>
-                <Link href="/pages" className="block text-white hover:text-gray-300 transition-colors body-text">Pages</Link>
-                <Link href="/reservation" className="block text-white hover:text-gray-300 transition-colors body-text">Reservation</Link>
-                <Link href="/blog" className="block text-white hover:text-gray-300 transition-colors body-text">Blog</Link>
-                <Link href="/shop" className="block text-white hover:text-gray-300 transition-colors body-text">Shop</Link>
+                <Link
+                  href="/"
+                  className="block text-white hover:text-gray-300 transition-colors body-text"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/pages"
+                  className="block text-white hover:text-gray-300 transition-colors body-text"
+                >
+                  Pages
+                </Link>
+                <Link
+                  href="/reservation"
+                  className="block text-white hover:text-gray-300 transition-colors body-text"
+                >
+                  Reservation
+                </Link>
+                <Link
+                  href="/blog"
+                  className="block text-white hover:text-gray-300 transition-colors body-text"
+                >
+                  Blog
+                </Link>
+                <Link
+                  href="/shop"
+                  className="block text-white hover:text-gray-300 transition-colors body-text"
+                >
+                  Shop
+                </Link>
                 <div className="flex gap-4 pt-4 border-t border-white/10">
-                  <button className="text-white"><Search className="w-5 h-5" /></button>
+                  <button className="text-white">
+                    <Search className="w-5 h-5" />
+                  </button>
                   <button className="text-white relative">
                     <ShoppingCart className="w-5 h-5" />
-                    <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span>
+                    <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                      0
+                    </span>
                   </button>
                 </div>
               </div>
@@ -270,7 +364,7 @@ export default function HeroSectionWithNavbar() {
             <div
               key={index}
               className={`absolute inset-0 slide-transition ${
-                index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             >
               <img
@@ -287,28 +381,38 @@ export default function HeroSectionWithNavbar() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl">
                 {/* Subtitle */}
-                <p className={`elegant-script text-2xl sm:text-3xl lg:text-4xl  text-yellow-400 mb-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
+                <p
+                  className={`elegant-script text-2xl sm:text-3xl lg:text-4xl  text-yellow-400 mb-4 ${isVisible ? "animate-fade-in-up delay-200" : "opacity-0"}`}
+                >
                   {slides[currentSlide].subtitle}
                 </p>
 
                 {/* Main Title */}
-                <h1 className={`elegant-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-8 lg:mb-12 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
+                <h1
+                  className={`elegant-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-8 lg:mb-12 ${isVisible ? "animate-fade-in-up delay-300" : "opacity-0"}`}
+                >
                   {slides[currentSlide].title}
                 </h1>
 
                 {/* Reservation Form */}
-                <div className={`${isVisible ? 'animate-fade-in-up delay-500' : 'opacity-0'}`}>
+                <div
+                  className={`${isVisible ? "animate-fade-in-up delay-500" : "opacity-0"}`}
+                >
                   <div className="flex items-center gap-4 mb-6">
                     <h3 className="elegant-title text-xl sm:text-2xl text-yellow-400 font-semibold">
                       Book a Dish
                     </h3>
                     <div className="h-px flex-1 bg-white/30 max-w-xs"></div>
                     <p className="text-white/80 text-sm body-text hidden sm:block">
-                      Reserve your dish today for the perfect Ingredish experience.
+                      Reserve your dish today for the perfect Ingredish
+                      experience.
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 items-end">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col sm:flex-row gap-4 items-end"
+                  >
                     <div className="form-control w-full sm:w-auto">
                       <input
                         type="number"
@@ -316,7 +420,9 @@ export default function HeroSectionWithNavbar() {
                         min="1"
                         max="20"
                         value={formData.person}
-                        onChange={(e) => setFormData({...formData, person: e.target.value})}
+                        onChange={(e) =>
+                          setFormData({ ...formData, person: e.target.value })
+                        }
                         className="input bg-transparent border-2 border-white/30 focus:border-yellow-400 text-white placeholder:text-white/60 w-full sm:w-40"
                         required
                       />
@@ -326,7 +432,9 @@ export default function HeroSectionWithNavbar() {
                       <input
                         type="date"
                         value={formData.date}
-                        onChange={(e) => setFormData({...formData, date: e.target.value})}
+                        onChange={(e) =>
+                          setFormData({ ...formData, date: e.target.value })
+                        }
                         className="input bg-transparent border-2 border-white/30 focus:border-yellow-400 text-white w-full sm:w-48"
                         required
                       />
@@ -337,7 +445,9 @@ export default function HeroSectionWithNavbar() {
                         type="time"
                         placeholder="Time*"
                         value={formData.time}
-                        onChange={(e) => setFormData({...formData, time: e.target.value})}
+                        onChange={(e) =>
+                          setFormData({ ...formData, time: e.target.value })
+                        }
                         className="input bg-transparent border-2 border-white/30 focus:border-yellow-400 text-white placeholder:text-white/60 w-full sm:w-40"
                         required
                       />
@@ -378,9 +488,9 @@ export default function HeroSectionWithNavbar() {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`h-1 rounded-full transition-all ${
-                  index === currentSlide 
-                    ? 'w-12 bg-yellow-400' 
-                    : 'w-8 bg-white/40 hover:bg-white/60'
+                  index === currentSlide
+                    ? "w-12 bg-yellow-400"
+                    : "w-8 bg-white/40 hover:bg-white/60"
                 }`}
               />
             ))}
