@@ -1,6 +1,7 @@
 'use client';
 
 import useAuth from '@/app/hooks/useAuth';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -20,7 +21,7 @@ const handleLogIn = (e) => {
       .then((result) => {
         toast.success('Successfully loged in')
         console.log(result.user);
-        navigate(location.state || "/");
+        router.push(location.state || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +34,7 @@ const handleLogIn = (e) => {
       .then((result) => {
         toast.success('Login Successfully!')
         console.log(result.user);
-        navigate(location.state || "/");
+        router.push(location.state || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -41,12 +42,12 @@ const handleLogIn = (e) => {
       });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-     signInUser()
-     alert('Login Succesfully')
-    // console.log('Login attempt:', { email, password });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //    signInUser()
+  //    alert('Login Succesfully')
+  //   // console.log('Login attempt:', { email, password });
+  // };
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4 py-8">
@@ -134,7 +135,7 @@ const handleLogIn = (e) => {
 
             {/* Login Button */}
             <button 
-            onClick={handleLogIn}
+            // onClick={handleLogIn}
               type="submit"
               className="btn w-full bg-yellow-500 hover:bg-yellow-600 border-none text-black font-bold text-lg h-12 rounded-lg shadow-lg hover:shadow-xl transition-all"
             >
@@ -170,9 +171,9 @@ const handleLogIn = (e) => {
           {/* Sign Up Link */}
           <p className="text-center mt-6 text-black">
             Don't have an account?{' '}
-            <a href="#" className="font-bold text-yellow-500 hover:text-yellow-600 transition-colors">
+            <Link href="register" className="font-bold text-yellow-500 hover:text-yellow-600 transition-colors">
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
 

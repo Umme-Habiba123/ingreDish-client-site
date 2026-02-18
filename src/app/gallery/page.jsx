@@ -28,7 +28,7 @@ export default function FoodGallery() {
   //     .then((data) => setFoodItems(data));
   // }, []);
 
-    const fetchFoodItems = async () => {
+  const fetchFoodItems = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/gallery");
       const data = await res.json();
@@ -37,6 +37,8 @@ export default function FoodGallery() {
       console.error("Failed to fetch food items:", error);
     }
   };
+
+  
 
   useEffect(() => {
     fetchFoodItems();
@@ -51,6 +53,8 @@ export default function FoodGallery() {
     { name: "DESSERTS", label: "Desserts" },
     { name: "BEVERAGES", label: "Beverages" },
   ];
+
+  
 
   const filteredItems =
     activeFilter === "ALL"
@@ -126,18 +130,18 @@ export default function FoodGallery() {
               {/* Image Container */}
               <div className="relative overflow-hidden h-72">
                 {/* Next.js Image Component */}
-               <Image
-  src={
-    item.image
-      ? item.image.startsWith("http")
-        ? item.image
-        : `http://localhost:5000/${item.image}`
-      : "/default-food.jpg" // local default fallback
-  }
-  alt={item.title || "Food Image"}
-  fill
-  className="object-cover"
-/>
+                <Image
+                  src={
+                    item.image
+                      ? item.image.startsWith("http")
+                        ? item.image
+                        : `http://localhost:5000/${item.image}`
+                      : "/default-food.jpg" 
+                  }
+                  alt={item.title || "Food Image"}
+                  fill
+                  className="object-cover"
+                />
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
@@ -579,6 +583,10 @@ export default function FoodGallery() {
           </div>
         </div>
       )}
+
+
+
+
     </div>
   );
 }
