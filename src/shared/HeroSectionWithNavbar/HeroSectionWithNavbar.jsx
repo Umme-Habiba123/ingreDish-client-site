@@ -14,7 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import useAuth from "@/app/hooks/useAuth";
+import useAuth from "@/app/hooks/useAuth ";
 
 export default function HeroSectionWithNavbar() {
   const [isVisible, setIsVisible] = useState(false);
