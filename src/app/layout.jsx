@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import HeroSectionWithNavbar from "@/shared/HeroSectionWithNavbar/HeroSectionWithNavbar";
 import Footer from "@/shared/Footer/Footer";
 import AuthProvider from "./context/AuthProvider";
 import { ToastContainer } from "react-toastify";
+import HeroSectionWithNavbar from "@/shared/HeroSectionWithNavbar/HeroSectionWithNavbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
